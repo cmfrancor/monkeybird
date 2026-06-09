@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <section id="seleccionar-mascota">
+
+      <h1 class = "titulo">MonkeyBird</h1>
+      <h2 class = "subtitulo">Elige a tu mascota:</h2>
+
+      <div id = "contenedor-tarjetas" class = "tarjetas-1">
+        
+      </div>
+
+      <div class = "tarjetas-2">
+        
+      </div>
+    
+      <button id="boton-mascota">Seleccionar</button>
+
+    </section>
+
+    <section id="ver-mapa">
+      <h2 class="subtitulo"> Recorre el mapa con tu mokepon </h2>
+      <canvas id="mapa"></canvas>
+      <div id="controles-mapa">
+        <button class="boton-direccion boton-arriba" aria-label="Mover arriba"
+          onmouseup="detenerMovimiento()" onmousedown="moverArriba()"
+          ontouchend="detenerMovimiento()" ontouchstart="moverArriba()">▲</button>
+        <button class="boton-direccion boton-izquierda" aria-label="Mover izquierda"
+          onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()"
+          ontouchend="detenerMovimiento()" ontouchstart="moverIzquierda()">◀</button>
+        <button class="boton-direccion boton-abajo" aria-label="Mover abajo"
+          onmouseup="detenerMovimiento()" onmousedown="moverAbajo()"
+          ontouchend="detenerMovimiento()" ontouchstart="moverAbajo()">▼</button>
+        <button class="boton-direccion boton-derecha" aria-label="Mover derecha"
+          onmouseup="detenerMovimiento()" onmousedown="moverDerecha()"
+          ontouchend="detenerMovimiento()" ontouchstart="moverDerecha()">▶</button>
+      </div>
+    </section>
+
+    <section id="seleccionar-ataque">
+
+      <h1 class = "titulo">MonkeyBird</h1>
+      <h2 class = "subtitulo">Elige tu ataque:</h2>
+
+      <div id="ataques">
+
+      </div>
+
+      <div>
+
+        <section id="mensajes">
+          <p id="resultado">Mucha Suerte!</p>
+
+          <section id="reiniciar"reiniciar>
+            <button id="boton-reiniciar">Reiniciar</button>
+          </section>
+
+        </section>          
+
+      </div>
+
+      <div class = "tarjetas-combate">
+        <label id="tarjeta-combate-jugador">
+
+          <div id="nombre-foto-jugador" class="encabezado-tarjeta">
+              <span id="mascota-jugador"></span>
+              </div>
+
+          <div class="vidas">
+            <p><span id="vidas-jugador">0</span> Victorias</p>
+          </div>
+        </label>
+
+
+        <label id="tarjeta-combate-enemigo">
+          <div id="nombre-foto-enemigo" class="encabezado-tarjeta">
+              <span id="mascota-enemigo"></span>
+              </div>
+
+          <div class="vidas">
+            <p id="ataque-del-enemigo"></p>
+            <p><span id="vidas-enemigo">0</span> Victorias</p>
+          </div>
+        </label>
+      </div>
+
+      <div class="historial-ataques">
+        <div class="columna-historial">
+          <h3>Tus ataques</h3>
+          <div id="ataques-del-jugador"></div>
+        </div>
+        <div class="columna-historial">
+          <h3>Ataques enemigo</h3>
+          <div id="ataques-del-enemigo"></div>
+        </div>
+      </div>
+
+      
+      
+
+    </section>
+    <script src="js/mokepon.js"></script>
+  </body>
+</html>

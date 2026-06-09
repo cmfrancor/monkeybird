@@ -1,0 +1,395 @@
+
+body {
+  font-family: 'Courier New', Courier; /* Fuente monoespaciada */
+  font-weight: bold;
+  background-color: #EFE9E3;
+}
+
+#seleccionar-mascota {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.titulo {
+  font-size: 56px;
+  color: #c8a57a;
+}
+
+.subtitulo {
+  font-size: 30px;
+  color: #4A3F35;
+}
+
+.tarjetas-1 {
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+}
+
+.tarjetas-2 {
+  gap: 10px;
+  display: flex;
+}
+
+input {
+  display: none;
+}
+
+input:checked + label {
+  background-color: #c8a57a;
+}
+
+input:hover + label {
+  transform: scale(1.05);
+}
+
+.tarjeta-de-mokepon {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  background: #D9CFC7;
+  color: #4A3F35;
+  height: 200px;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 10px;
+  font-size: 24px;
+  justify-content: center;
+  border: 2px solid #c8a57a;
+}
+
+.tarjeta-de-mokepon img {
+  max-width: 100%;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.tarjeta-de-mokepon p {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+}
+
+button {
+  font-family: 'Courier New', Courier; /* Fuente monoespaciada */
+  font-weight: bold;
+  background-color: #c8a57a;
+  color: #4A3F35;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  border-radius: 12px;
+}
+
+button:hover {
+  background-color: #b89668;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #a88558;
+  transform: scale(0.98);
+}
+
+#boton-reiniciar {
+  /* Resetear propiedades heredadas de button */
+  all: unset;
+
+  /* Aplicar configuración específica */
+  font-family: 'Courier New', Courier;
+  font-weight: bold;
+  color: #4A3F35;
+  font-size: 20px;
+  cursor: pointer;
+
+  /* Estilo visual del botón sin bordes */
+  background-color: #c8a57a;
+  padding: 12px 24px;
+  border-radius: 12px;
+  transition: background-color 0.2s, transform 0.1s;
+  display: inline-block;
+  text-align: center;
+}
+
+#boton-reiniciar:hover {
+  background-color: #b89668;
+  transform: scale(1.05);
+}
+
+#boton-reiniciar:active {
+  background-color: #a88558;
+  transform: scale(0.98);
+}
+
+#seleccionar-ataque {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.tarjetas-combate {
+  gap: 10px;
+  display: grid;
+  grid-template-columns: 500px 500px;
+}
+
+.historial-ataques {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.columna-historial {
+  background: #D9CFC7;
+  color: #4A3F35;
+  border-radius: 20px;
+  padding: 15px 20px;
+  width: 450px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.columna-historial h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.columna-historial #ataques-del-jugador,
+.columna-historial #ataques-del-enemigo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.columna-historial #ataques-del-jugador p,
+.columna-historial #ataques-del-enemigo p {
+  margin: 0;
+  font-size: 22px;
+}
+
+#tarjeta-combate-jugador {
+  border-radius: 20px;
+  width: 450px;
+  background: #D9CFC7;
+  color: #4A3F35;
+  height: 300px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #c8a57a;
+  align-items: center;
+}
+
+#tarjeta-combate-enemigo {
+  border-radius: 20px;
+  width: 450px;
+  background: #D9CFC7;
+  color: #4A3F35;
+  height: 300px;
+  box-sizing: border-box;
+  padding: 15px;
+  margin: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #c8a57a;
+  align-items: center;
+}
+
+#tarjeta-combate-jugador .imagen-adaptable,
+#tarjeta-combate-enemigo .imagen-adaptable {
+  max-height: 120px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.imagen-adaptable {
+  max-width: 100%;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  margin: 10px;
+}
+
+.encabezado-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.encabezado-tarjeta span {
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#vidas-enemigo {
+  color: #c8a57a;
+  font-size: 40px;
+}
+
+#vidas-jugador {
+  color: #c8a57a;
+  font-size: 40px;
+}
+
+#mensajes {
+  background-color: #D9CFC7;
+  width: 350px;
+  height: 130px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  border-radius: 10px;
+  font-size: 24px;
+  color: #4A3F35;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #c8a57a;
+}
+
+#ver-mapa {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#controles-mapa {
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(3, 60px);
+  gap: 6px;
+  margin: 20px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-direccion {
+  all: unset;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier;
+  font-size: 24px;
+  color: #4A3F35;
+  background-color: #c8a57a;
+  border: 2px solid #a88558;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #8a6b3d, 0 5px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.15s, transform 0.08s, box-shadow 0.08s;
+  user-select: none;
+}
+
+.boton-direccion:hover {
+  background-color: #b89668;
+}
+
+.boton-direccion:active {
+  background-color: #a88558;
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #8a6b3d, 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.boton-arriba    { grid-column: 2; grid-row: 1; }
+.boton-izquierda { grid-column: 1; grid-row: 2; }
+.boton-abajo     { grid-column: 2; grid-row: 3; }
+.boton-derecha   { grid-column: 3; grid-row: 2; }
+
+@media (max-width: 430px) {
+  .tarjetas-1, .tarjetas-2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .historial-ataques {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .columna-historial {
+    width: 300px
+  }
+
+  .tarjeta-de-mokepon {
+    width: 90%;
+    max-width: 350px;
+    font-size: 20px;
+  }
+
+  #ataques, .tarjetas-combate {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mensajes {
+    width: 90%;
+    max-width: 350px;
+    min-width: 280px;
+    margin: 10px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  #tarjeta-combate-jugador,
+  #tarjeta-combate-enemigo {
+    width: 90%;
+    max-width: 350px;
+    min-width: 280px;
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  #tarjeta-combate-jugador .imagen-adaptable,
+  #tarjeta-combate-enemigo .imagen-adaptable {
+    max-height: 120px ;
+    padding: 3px;
+    margin: 3px;
+  }
+
+  .tarjetas-combate {
+    align-items: center;
+  }
+
+}
