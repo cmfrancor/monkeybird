@@ -19,6 +19,7 @@ const mapa = document.getElementById("mapa");
 
 let jugadorId = null;
 let mokepones = [];
+let monkeyBirdsEnemigos = [];
 let ataqueJugador = [];
 let ataqueEnemigo = [];
 let desenlaceCombate;
@@ -406,21 +407,10 @@ function pintarCanvas() {
 
   enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
-  // petirrojoEnemigo.pintarMonkeyBird();
-  // titiEnemigo.pintarMonkeyBird();
-  // gorilaEnemigo.pintarMonkeyBird();
-  // aulladorEnemigo.pintarMonkeyBird();
-  // aguilaEnemigo.pintarMonkeyBird();
-  // copetonEnemigo.pintarMonkeyBird();
-
-  if (mascotaJugadorObjeto.velocidadX != 0 || mascotaJugadorObjeto.velocidadY != 0) {
-    revisarColision(petirrojoEnemigo);
-    revisarColision(aguilaEnemigo);
-    revisarColision(aulladorEnemigo);
-    revisarColision(copetonEnemigo);
-    revisarColision(gorilaEnemigo);
-    revisarColision(titiEnemigo);
-  }
+  monkeyBirdsEnemigos.forEach(function (mokepon) {
+    mokepon.pintarMonkeyBird();
+    revisarColision(mokepon);
+  })
 
 }
 
@@ -437,7 +427,7 @@ function enviarPosicion(x, y) {
   }).then(function (res) {
     if (res.ok) {
       res.json().then(function({enemigos}) {
-        enemigos.forEach(function(enemigo) {
+        monkeyBirdsEnemigos = enemigos.map(function(enemigo) {
           let monkeyBirdEnemigo = null;
           const monkeyBirdNombre = enemigo.mokepon.nombre || "";
           if (monkeyBirdNombre === "Petirrojo") {
@@ -456,7 +446,7 @@ function enviarPosicion(x, y) {
 
           monkeyBirdEnemigo.x = enemigo.x;
           monkeyBirdEnemigo.y = enemigo.y;
-          monkeyBirdEnemigo.pintarMonkeyBird()
+          return monkeyBirdEnemigo;
         })
       })
     }
