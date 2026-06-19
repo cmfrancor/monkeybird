@@ -25,19 +25,9 @@ let ataqueJugador = [];
 let ataqueEnemigo = [];
 let desenlaceCombate;
 let opcionDeMokepones;
-let inputPetirrojo;
-let inputCopeton;
-let inputAguila;
-let inputTiti;
-let inputGorila;
-let inputAullador;
 let mascotaJugador;
 let mascotaJugadorObjeto;
 let ataquesMokepon;
-let ataquesMokeponEnemigo;
-let botonFuego
-let botonAgua
-let botonTierra
 let botones = [];
 let indexAtaqueJugador;
 let IndexAtaqueEnemigo;
@@ -178,12 +168,6 @@ function iniciarJuego() {
           <img src = "${mokepon.foto}">
         </label>`
   contenedorTarjetas.innerHTML += opcionDeMokepones;
-  inputPetirrojo = document.getElementById("Petirrojo");
-  inputCopeton = document.getElementById("Copetón");
-  inputAguila = document.getElementById("Aguila");
-  inputTiti = document.getElementById("Titi");
-  inputGorila = document.getElementById("Gorila");
-  inputAullador = document.getElementById("Aullador");
   })
   sectionReiniciar.style.display = "none";
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
@@ -267,10 +251,6 @@ function mostrarAtaques(ataques) {
     ataquesMokepon = `<button id = ${ataque.id} class="boton-de-ataque BAtaque"> ${ataque.nombre} </button>`
     contenedorAtaques.innerHTML += ataquesMokepon
   })
-  botonFuego = document.getElementById("boton-fuego");
-  botonAgua = document.getElementById("boton-agua");
-  botonTierra = document.getElementById("boton-tierra");
-
   botones = document.querySelectorAll('.BAtaque')
   
 }
@@ -338,34 +318,12 @@ function aleatorio(min, max){
 function seleccionarMascotaEnemigo(enemigo) {
   let imagen = document.createElement("img");
   spanMascotaEnemigo.innerHTML = enemigo.nombre;
-  ataquesMokeponEnemigo = enemigo.ataques;
   imagen.src = enemigo.foto
   imagen.className = "imagen-adaptable";
   tarjetaCombateEnemigo.appendChild(imagen);
   secuenciaAtaque();
 }
 
-
-function ataqueAleatorioEnemigo() {
-  let ataqueAleatorio = ataquesMokeponEnemigo[aleatorio(0, ataquesMokeponEnemigo.length - 1)].nombre;
-  if (ataqueAleatorio === '🔥') {
-        ataqueEnemigo.push('Fuego');
-        console.log(ataqueEnemigo);
-      } else if (ataqueAleatorio === '💧') {
-        ataqueEnemigo.push('Agua');
-        console.log(ataqueEnemigo);
-      } else {
-        ataqueEnemigo.push('Tierra');
-        console.log(ataqueEnemigo);
-      }
-  iniciarPelea();
-}
-
-function iniciarPelea() {
-  if (ataqueJugador.length === 5 && ataqueEnemigo.length === 5) {
-    combate();
-  }
-}
 
 function indexAmbosOponentes(jugador, enemigo) {
   indexAtaqueJugador = ataqueJugador[jugador];
