@@ -49,14 +49,13 @@ lienzo.imageSmoothingQuality = "high";
 let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = './assets/monkeybird.png';
-let anchoDelMapa = window.innerWidth - 20;
-const anchoMaximoDelMapa = 640;
-if (anchoDelMapa > anchoMaximoDelMapa) {
-  anchoDelMapa = anchoMaximoDelMapa;
-}
-let alturaQueBuscamos = anchoDelMapa*480/640;
+// Resolución interna fija e idéntica en todos los dispositivos, para que las
+// coordenadas x/y de los jugadores sean consistentes entre el PC y el celular.
+// El canvas se escala visualmente con CSS (max-width) en pantallas pequeñas.
+const anchoDelMapa = 640;
+const alturaDelMapa = 480;
 mapa.width = anchoDelMapa;
-mapa.height = alturaQueBuscamos;
+mapa.height = alturaDelMapa;
 class Mokepon {
   constructor(nombre, foto, vida, fotoMapa, id = null) {
     this.id = id;
@@ -194,7 +193,7 @@ function iniciarJuego() {
 }
 
 function unirseAlJuego() {
-  fetch("http://localhost:8080/unirse").then(function (res) {
+  fetch("/unirse").then(function (res) {
     console.log(res);
     if (res.ok) {
       res.text().then(function (respuesta) {
@@ -240,7 +239,7 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarMokepon(mascotaJugador) {
-  fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+  fetch(`/mokepon/${jugadorId}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json"
@@ -306,7 +305,7 @@ function secuenciaAtaque() {
 }
 
 function enviarAtaques() {
-  fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
+  fetch(`/mokepon/${jugadorId}/ataques`, {
     method : "post",
     headers : {
       "Content-Type" : "application/json",
@@ -320,7 +319,7 @@ function enviarAtaques() {
 }
 
 function obtenerAtaques() {
-  fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`).then(function(res) {
+  fetch(`/mokepon/${enemigoId}/ataques`).then(function(res) {
     if (res.ok) {
       res.json().then(function({ ataques }){
         if (ataques.length === 5) {
@@ -447,7 +446,7 @@ function pintarCanvas() {
 }
 
 function enviarPosicion(x, y) {
-  fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+  fetch(`/mokepon/${jugadorId}/posicion`, {
     method: "post",
     headers: {
       "Content-Type": "application/json"
