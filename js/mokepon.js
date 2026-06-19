@@ -18,6 +18,7 @@ const sectionVerMapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 
 let jugadorId = null;
+let enemigoId = null;
 let mokepones = [];
 let monkeyBirdsEnemigos = [];
 let ataqueJugador = [];
@@ -294,11 +295,41 @@ function secuenciaAtaque() {
         boton.style.background = '#112f58';
         boton.disabled = true;
       }
-      ataqueAleatorioEnemigo();
+      if (ataqueJugador.length === 5) {
+        enviarAtaques();
+      }
+      
     })
     
   })
   
+}
+
+function enviarAtaques() {
+  fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
+    method : "post",
+    headers : {
+      "Content-Type" : "application/json",
+    },
+    body: JSON.stringify({
+      ataques : ataqueJugador,
+    })
+  })
+
+  intervalo = setInterval(obtenerAtaques, 50);
+}
+
+function obtenerAtaques() {
+  fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`).then(function(res) {
+    if (res.ok) {
+      res.json().then(function({ ataques }){
+        if (ataques.length === 5) {
+          ataqueEnemigo = ataques;
+          combate();
+        }
+      })
+    }
+  })
 }
 
 function aleatorio(min, max){
@@ -343,6 +374,7 @@ function indexAmbosOponentes(jugador, enemigo) {
 }
 
 function combate() {
+  clearInterval(intervalo);
 
   for (let index = 0; index < ataqueJugador.length; index++) {
     if (ataqueJugador[index] === ataqueEnemigo[index]){
@@ -427,21 +459,25 @@ function enviarPosicion(x, y) {
   }).then(function (res) {
     if (res.ok) {
       res.json().then(function({enemigos}) {
-        monkeyBirdsEnemigos = enemigos.map(function(enemigo) {
+        monkeyBirdsEnemigos = enemigos
+          .filter(function (enemigo) {
+            return enemigo.mokepon && typeof enemigo.x === "number" && typeof enemigo.y === "number";
+          })
+          .map(function(enemigo) {
           let monkeyBirdEnemigo = null;
           const monkeyBirdNombre = enemigo.mokepon.nombre || "";
           if (monkeyBirdNombre === "Petirrojo") {
-            monkeyBirdEnemigo = new Mokepon('Petirrojo', './assets/petirrojo.png', 5, './assets/petirrojo_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Petirrojo', './assets/petirrojo.png', 5, './assets/petirrojo_mapa.png', enemigo.id);
           } else if (monkeyBirdNombre === "Copetón") {
-            monkeyBirdEnemigo = new Mokepon('Copetón', './assets/copeton.png', 5, './assets/copeton_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Copetón', './assets/copeton.png', 5, './assets/copeton_mapa.png', enemigo.id);
           } else if (monkeyBirdNombre === "Aguila") {
-            monkeyBirdEnemigo = new Mokepon('Aguila', './assets/aguila.png', 5, './assets/aguila_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Aguila', './assets/aguila.png', 5, './assets/aguila_mapa.png', enemigo.id);
           } else if (monkeyBirdNombre === "Titi") {
-            monkeyBirdEnemigo = new Mokepon('Titi', './assets/titi.png', 5, './assets/titi_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Titi', './assets/titi.png', 5, './assets/titi_mapa.png', enemigo.id);
           } else if (monkeyBirdNombre === "Gorila") {
-            monkeyBirdEnemigo = new Mokepon('Gorila', './assets/gorila.png', 5, './assets/gorila_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Gorila', './assets/gorila.png', 5, './assets/gorila_mapa.png', enemigo.id);
           } else if (monkeyBirdNombre === "Aullador") {
-            monkeyBirdEnemigo = new Mokepon('Aullador', './assets/aullador.png', 5, './assets/aullador_mapa.png');
+            monkeyBirdEnemigo = new Mokepon('Aullador', './assets/aullador.png', 5, './assets/aullador_mapa.png', enemigo.id);
           }
 
           monkeyBirdEnemigo.x = enemigo.x;
@@ -538,6 +574,7 @@ function revisarColision(enemigo) {
   alert("Hay Colisión con: " + enemigo.nombre);
   detenerMovimiento();
   clearInterval(intervalo);
+  enemigoId = enemigo.id;
   seleccionarMascotaEnemigo(enemigo)
   sectionSeleccionarAtaque.style.display = "flex";
   sectionVerMapa.style.display = "none";
