@@ -56,7 +56,8 @@ let alturaQueBuscamos = anchoDelMapa*480/640;
 mapa.width = anchoDelMapa;
 mapa.height = alturaQueBuscamos;
 class Mokepon {
-  constructor(nombre, foto, vida, fotoMapa) {
+  constructor(nombre, foto, vida, fotoMapa, id = null) {
+    this.id = id;
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
@@ -98,108 +99,69 @@ let aguila = new Mokepon('Aguila', './assets/aguila.png', 5, './assets/aguila_ma
 let titi = new Mokepon('Titi', './assets/titi.png', 5, './assets/titi_mapa.png');
 let gorila = new Mokepon('Gorila', './assets/gorila.png', 5, './assets/gorila_mapa.png');
 let aullador = new Mokepon('Aullador', './assets/aullador.png', 5, './assets/aullador_mapa.png');
-let petirrojoEnemigo = new Mokepon('Petirrojo', './assets/petirrojo.png', 5, './assets/petirrojo_mapa.png');
-let copetonEnemigo = new Mokepon('Copetón', './assets/copeton.png', 5, './assets/copeton_mapa.png');
-let aguilaEnemigo = new Mokepon('Aguila', './assets/aguila.png', 5, './assets/aguila_mapa.png');
-let titiEnemigo = new Mokepon('Titi', './assets/titi.png', 5, './assets/titi_mapa.png');
-let gorilaEnemigo = new Mokepon('Gorila', './assets/gorila.png', 5, './assets/gorila_mapa.png');
-let aulladorEnemigo = new Mokepon('Aullador', './assets/aullador.png', 5, './assets/aullador_mapa.png');
 
-petirrojo.ataques.push(
+const ataquesPetirrojo = [
   { nombre: '🔥', id: 'boton-fuego'},
   { nombre: '🔥', id: 'boton-fuego'},
   { nombre: '🔥', id: 'boton-fuego'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '💧', id: 'boton-agua'},
-);
+]
 
-petirrojoEnemigo.ataques.push(
-  { nombre: '🔥', id: 'boton-fuego'},
-  { nombre: '🔥', id: 'boton-fuego'},
-  { nombre: '🔥', id: 'boton-fuego'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '💧', id: 'boton-agua'},
-);
+petirrojo.ataques.push(... ataquesPetirrojo);
 
-copeton.ataques.push(
+const ataquesCopeton = [
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🔥', id: 'boton-fuego'},
-);
+]
 
-copetonEnemigo.ataques.push(
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🔥', id: 'boton-fuego'},
-);
+copeton.ataques.push(... ataquesCopeton);
 
-aguila.ataques.push(
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🔥', id: 'boton-fuego'},
-  { nombre: '🔥', id: 'boton-fuego'},
-);
 
-aguilaEnemigo.ataques.push(
+const ataquesAguila = [
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🔥', id: 'boton-fuego'},
   { nombre: '🔥', id: 'boton-fuego'},
-);
+]
 
-titi.ataques.push(
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '🔥', id: 'boton-fuego'},
-);
+aguila.ataques.push(... ataquesAguila);
 
-titiEnemigo.ataques.push(
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '🔥', id: 'boton-fuego'},
-);
 
-gorila.ataques.push(
+const ataquesTiti = [
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '🔥', id: 'boton-fuego'},
-);
+]
 
-gorilaEnemigo.ataques.push(
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '💧', id: 'boton-agua'},
-  { nombre: '🔥', id: 'boton-fuego'},
-);
+titi.ataques.push(... ataquesTiti);
 
-aullador.ataques.push(
+const ataquesGorila = [
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🪨', id: 'boton-tierra'},
-  { nombre: '💧', id: 'boton-agua'},
+  { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '🔥', id: 'boton-fuego'},
-);
+]
 
-aulladorEnemigo.ataques.push(
+gorila.ataques.push(... ataquesGorila);
+
+const ataquesAullador = [
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '🪨', id: 'boton-tierra'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '💧', id: 'boton-agua'},
   { nombre: '🔥', id: 'boton-fuego'},
-);
+]
+
+aullador.ataques.push(... ataquesAullador);
+
 
 mokepones.push(petirrojo, copeton, aguila, titi, gorila, aullador);
 
@@ -441,12 +403,15 @@ function pintarCanvas() {
   lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
 
   mascotaJugadorObjeto.pintarMonkeyBird();
-  petirrojoEnemigo.pintarMonkeyBird();
-  titiEnemigo.pintarMonkeyBird();
-  gorilaEnemigo.pintarMonkeyBird();
-  aulladorEnemigo.pintarMonkeyBird();
-  aguilaEnemigo.pintarMonkeyBird();
-  copetonEnemigo.pintarMonkeyBird();
+
+  enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
+
+  // petirrojoEnemigo.pintarMonkeyBird();
+  // titiEnemigo.pintarMonkeyBird();
+  // gorilaEnemigo.pintarMonkeyBird();
+  // aulladorEnemigo.pintarMonkeyBird();
+  // aguilaEnemigo.pintarMonkeyBird();
+  // copetonEnemigo.pintarMonkeyBird();
 
   if (mascotaJugadorObjeto.velocidadX != 0 || mascotaJugadorObjeto.velocidadY != 0) {
     revisarColision(petirrojoEnemigo);
@@ -457,6 +422,45 @@ function pintarCanvas() {
     revisarColision(titiEnemigo);
   }
 
+}
+
+function enviarPosicion(x, y) {
+  fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      x,
+      y
+    })
+  }).then(function (res) {
+    if (res.ok) {
+      res.json().then(function({enemigos}) {
+        enemigos.forEach(function(enemigo) {
+          let monkeyBirdEnemigo = null;
+          const monkeyBirdNombre = enemigo.mokepon.nombre || "";
+          if (monkeyBirdNombre === "Petirrojo") {
+            monkeyBirdEnemigo = new Mokepon('Petirrojo', './assets/petirrojo.png', 5, './assets/petirrojo_mapa.png');
+          } else if (monkeyBirdNombre === "Copetón") {
+            monkeyBirdEnemigo = new Mokepon('Copetón', './assets/copeton.png', 5, './assets/copeton_mapa.png');
+          } else if (monkeyBirdNombre === "Aguila") {
+            monkeyBirdEnemigo = new Mokepon('Aguila', './assets/aguila.png', 5, './assets/aguila_mapa.png');
+          } else if (monkeyBirdNombre === "Titi") {
+            monkeyBirdEnemigo = new Mokepon('Titi', './assets/titi.png', 5, './assets/titi_mapa.png');
+          } else if (monkeyBirdNombre === "Gorila") {
+            monkeyBirdEnemigo = new Mokepon('Gorila', './assets/gorila.png', 5, './assets/gorila_mapa.png');
+          } else if (monkeyBirdNombre === "Aullador") {
+            monkeyBirdEnemigo = new Mokepon('Aullador', './assets/aullador.png', 5, './assets/aullador_mapa.png');
+          }
+
+          monkeyBirdEnemigo.x = enemigo.x;
+          monkeyBirdEnemigo.y = enemigo.y;
+          monkeyBirdEnemigo.pintarMonkeyBird()
+        })
+      })
+    }
+  })
 }
 
 function moverDerecha() {
